@@ -1,0 +1,154 @@
+$base-font-size: 16px
+$base-line-height: 24px
+@include establish-baseline()
+$total-columns: 5 
+$column-width: 4em 
+$gutter-width: 1em 
+$grid-padding: 1em
+$pad : 768px 12
+$pc  : 960px 15
+$view : 2 //右方主內容可瀏覽的範圍
+$side : $total-columns - $view //左側選單所佔範圍
+.container 
+	+set-container-width
+	+susy-grid-background
+	margin: 0 auto
+	overflow: hidden
+	+at-breakpoint($pad)
+		+susy-grid-background
+		+container
+	+at-breakpoint($pc)
+		+susy-grid-background
+		+container
+.header
+	+set-container-width
+	margin: 0 auto
+	background: #241D1F
+	color: #fff
+	+padding-trailer(1/4)
+	+padding-leader(1/4)
+	+trailer()
+	text-align: center
+	position: relative
+	h1 
+		+adjust-font-size-to(1.5em)
+	.menu-control
+		padding: 2px
+		+transition(all,.5s)
+		position: absolute
+		top: 15px
+		left: 10px
+		cursor: pointer
+		+border-radius(3px)
+		border: 1px solid #fff
+		&:hover
+			color: #241D1F
+			background: #fff
+			border: 1px solid #241D1F
+	+at-breakpoint($pad)
+		+container
+		.menu-control
+			display: none
+	+at-breakpoint($pc)
+		+container
+.menu
+	+span-columns($side)
+	+padding-leader(0.5)
+	+padding-trailer(3)
+	+pad(0.2,0.2)
+	+box-sizing(border-box)
+	margin-left: -100%
+	+opacity(0.9)
+	background: #207ABC
+	color: #fff
+	+transition(margin 1s)
+	@extend %clearfix
+	.open &  
+		margin-left: 0
+	h2 
+		font-weight: bold
+		+adjust-font-size-to(18px)
+	a 
+		+transition(all,.5s)
+		color: #fff
+		display: block
+		line-height: 2.5em
+		text-indent: 1em
+		&:hover
+			background: darken(#207ABC,10%)
+			color: yellow
+	+at-breakpoint($pad)
+		width: 100%
+		padding: 0
+		margin: 0
+		text-align: center
+		li 
+			+inline-block()
+			a 
+				text-indent: 0
+				padding: 1em
+		h2 
+			display: none
+.main 
+	@include span-columns($total-columns omega)
+	+transition(margin 1s)
+	.open &  
+		margin-right: - space($side)
+.banner 
+	background: blue //test
+	color: #fff //test
+	+trailer()
+	p 
+		+adjust-font-size-to(13px)
+	+at-breakpoint($pad)	
+		p 
+			+adjust-font-size-to(23px,1.5)
+	+at-breakpoint($pc)
+		p 
+			+adjust-font-size-to(35px)
+.product
+	+trailer()
+	@extend %clearfix
+	background: red //test
+	section
+		height: 100px //test
+		background: #000 //test
+		+trailer()
+	.bar
+		+trailer()
+		height: 100px //test
+		text-align: center
+		background: gray //test
+		a 
+			padding: 5px 10px
+			+border-radius(5px)
+			background: blue //test
+			color: #fff //test
+			+inline-block
+	+at-breakpoint($pad)
+		section
+			+isolate-grid(6)
+		.bar 
+			+isolate-grid(6)
+	+at-breakpoint($pc)
+		section
+			+isolate-grid(5)
+		.bar 
+			+isolate-grid(15)
+			background: gray //test
+.blog
+	background: pink //test
+	@extend %clearfix
+	h2
+		text-align: center
+	section
+		height: 100px //test
+		+trailer()
+		background: green //test
+	+at-breakpoint($pad)
+		section
+			+span-columns(6)
+			+nth-omega(2n)
+.test-color
+	color: red //test
+	background: #000 //test
